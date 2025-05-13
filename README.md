@@ -114,9 +114,8 @@ In order for code to be merged it must pass all tests and all configured linting
 stylistic issues. Any reported problem must be fixed before merging.
 
 **Setup**</br>
-* We build with latest go (currently 1.91) - if you do not have that installed go here  [https://go.dev.dl](https://go.dev.dl)
-* We run lint with `golangci-lint` and you should install it locally so you can check your code. Follow instructions
-  here [https://golangci-lint.run/usage/install/](https://golangci-lint.run/usage/install/)
+* We build with latest go (currently 1.91) - if you do not have that installed follow the steps [here](https://go.dev/dl)
+* We run lint with `golangci-lint` and you should install it locally so you can check your code. Follow instructions [here](https://golangci-lint.run/welcome/install/)
 
 **Continously, or at least before PR**</br>
 * Run `go test ./... -count=1 -v` and make sure all tests are green / ok.
