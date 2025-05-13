@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=pizzaschema.json
+pizzas:
+    -   $id: margerita
+        size: M
+        type: pan
+        links:
+            pizzaTopping:
+              - topping: tomato sauce
+              - topping: mozzarella
+                extra: true     
+
+    -   $id: pepperoni
+        size: L
+        type: pan
+        links:
+            pizzaTopping:
+              - topping: tomato sauce
+              - topping: mozzarella
+              - topping: onion
+              - topping: pepperoni 
+
+    - $id: calzone
+      size: L
+      type: thin
+
+toppings:
+    -   name: tomato sauce
+    -   name: onion
+    -   name: mozzarella
+    -   name: olives
+    -   name: pepperoni
+    -   name: artichoke
+
+persons:
+  - phone: 1234
+  - name: "henrik"
+    phone: 12345
+    blah: blah
+    links:
+        likedPizza:
+            - pizza: pepperoni
+            - pizza: yuk

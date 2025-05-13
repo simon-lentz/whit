@@ -1,0 +1,44 @@
+schema "invariants"
+
+type Person {
+    a Integer
+    b Integer
+    c Integer
+    birthDate Date
+
+    --> OWNS (many) Car { since Date }
+
+    ! "a and b must have same sign"
+        a * b > 0
+
+    ! "a must be greater than b"
+        a > b
+
+    ! "a,b,c must all be between 1 and 3, or none of them"
+        [a,b,c] =~ AllOrNone[Integer[1,3]]
+
+    ! "conditional if a > b then c > b else c < b"
+        a > b ? { c > b : c < b }
+
+    ! "cannot own a car since date before it was manufactured or before birth of the person"
+        OWNS_Cars | $theCar, $edge | $theCar.productionDate <= $edge.since && birthDate >= $edge.since
+        // --> means ref to relationship (i.e. both --> and *->).
+        // | means loop over set
+        // Names of variables are required, but can be special $, wiothout var and ., a property refers to
+        // the contect object (a Person in this case).
+        // A set of instances for a relationship produces one or two variables (the referenced and the link/ edge).
+        // Compositions only one (since there is no edge properties for those).
+}
+
+type Car {
+    regNbr         String
+    productionDate Date
+}
+type Organization {
+    name String
+    --> MEMBERS (many) Person
+    --> LEADER (one) Person
+
+    ! "A leader of an organiation must be a member of the organization"
+        LEADER in MEMBERS 
+}

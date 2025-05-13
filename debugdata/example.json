@@ -1,0 +1,475 @@
+{
+    "line": 1,
+    "column": 7,
+    "source": "parser/example.yammm",
+    "name": "example",
+    "types": [
+        {
+            "line": 2,
+            "column": 14,
+            "source": "parser/example.yammm",
+            "name": "Vehicle",
+            "plural_name": "Vehicles",
+            "properties": [
+                {
+                    "name": "example",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "line": 5,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Person",
+            "plural_name": "People",
+            "properties": [
+                {
+                    "name": "name",
+                    "datatype": [
+                        "String",
+                        "",
+                        ""
+                    ],
+                    "primary": true
+                }
+            ],
+            "associations": [
+                {
+                    "name": "OWNS",
+                    "to": "Car",
+                    "optional": false,
+                    "many": true,
+                    "properties": [
+                        {
+                            "name": "since",
+                            "datatype": [
+                                "Date"
+                            ],
+                            "optional": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "line": 10,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Car",
+            "plural_name": "Cars",
+            "properties": [
+                {
+                    "name": "regnbr",
+                    "datatype": [
+                        "String",
+                        "6",
+                        "8"
+                    ],
+                    "primary": true,
+                    "documentation": "regNbr is the registration number of the car. It is a string between 6 and 8 characters long."
+                }
+            ],
+            "inherits": [
+                "Vehicle",
+                "Something",
+                "TotallyDifferent",
+                "CommonStuff"
+            ],
+            "compositions": [
+                {
+                    "name": "AUTOPARTS",
+                    "to": "AutoPart",
+                    "optional": false,
+                    "many": true
+                }
+            ],
+            "documentation": "Car is a car..."
+        },
+        {
+            "line": 15,
+            "column": 14,
+            "source": "parser/example.yammm",
+            "name": "AutoPart",
+            "plural_name": "AutoParts",
+            "properties": [
+                {
+                    "name": "serialNumber",
+                    "datatype": [
+                        "String",
+                        "",
+                        ""
+                    ],
+                    "primary": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "line": 18,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Engine",
+            "plural_name": "Engines",
+            "properties": [
+                {
+                    "name": "power",
+                    "datatype": [
+                        "Pattern",
+                        "[0-9]+kW"
+                    ],
+                    "optional": true
+                }
+            ],
+            "inherits": [
+                "AutoPart"
+            ]
+        },
+        {
+            "line": 21,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Transmission",
+            "plural_name": "Transmissions",
+            "properties": [
+                {
+                    "name": "type",
+                    "datatype": [
+                        "Enum",
+                        "manual",
+                        "auto",
+                        "cvt",
+                        "semi-auto"
+                    ]
+                }
+            ],
+            "inherits": [
+                "AutoPart"
+            ]
+        },
+        {
+            "line": 25,
+            "column": 14,
+            "source": "parser/example.yammm",
+            "name": "CommonStuff",
+            "plural_name": "CommonStuffs",
+            "properties": [
+                {
+                    "name": "comment",
+                    "datatype": [
+                        "String",
+                        "",
+                        "512"
+                    ],
+                    "optional": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "line": 28,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "BaseExample",
+            "plural_name": "BaseExamples",
+            "properties": [
+                {
+                    "name": "propS",
+                    "datatype": [
+                        "String",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propSOneTen",
+                    "datatype": [
+                        "String",
+                        "1",
+                        "10"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propSOneMax",
+                    "datatype": [
+                        "String",
+                        "1",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propI",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propIFive10",
+                    "datatype": [
+                        "Integer",
+                        "5",
+                        "10"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propIZeroMax",
+                    "datatype": [
+                        "Integer",
+                        "0",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propIMinZero",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propF",
+                    "datatype": [
+                        "Float",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propFZeroMax",
+                    "datatype": [
+                        "Float",
+                        "0.0",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propFMinZero",
+                    "datatype": [
+                        "Float",
+                        "",
+                        "0.0"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propB",
+                    "datatype": [
+                        "Boolean"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propD",
+                    "datatype": [
+                        "Date"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propT",
+                    "datatype": [
+                        "Timestamp"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "propTCustom",
+                    "datatype": [
+                        "Timestamp",
+                        "20060102"
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "type",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "datatype",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "mixin",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "schema",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "required",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "primary",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "extends",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "includes",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "abstract",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                },
+                {
+                    "name": "mixin",
+                    "datatype": [
+                        "Integer",
+                        "",
+                        ""
+                    ],
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "line": 55,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "RequiredExample",
+            "plural_name": "RequiredExamples",
+            "properties": [
+                {
+                    "name": "mustBeSet",
+                    "datatype": [
+                        "Boolean"
+                    ]
+                }
+            ]
+        },
+        {
+            "line": 58,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Example",
+            "plural_name": "Examples",
+            "properties": [
+                {
+                    "name": "id",
+                    "datatype": [
+                        "String",
+                        "",
+                        ""
+                    ],
+                    "primary": true
+                }
+            ],
+            "inherits": [
+                "BaseExample",
+                "RequiredExample",
+                "CommonStuff"
+            ]
+        },
+        {
+            "line": 61,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Powerplant",
+            "plural_name": "Powerplants",
+            "properties": [
+                {
+                    "name": "capacity",
+                    "datatype": [
+                        "Alias",
+                        "megaWatt"
+                    ],
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "line": 69,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "Something",
+            "plural_name": "Somethings"
+        },
+        {
+            "line": 70,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "TotallyDifferent",
+            "plural_name": "TotallyDifferents"
+        }
+    ],
+    "data_types": [
+        {
+            "line": 67,
+            "column": 5,
+            "source": "parser/example.yammm",
+            "name": "megaWatt",
+            "constraint": [
+                "Pattern",
+                "[0-9]+MW"
+            ]
+        }
+    ]
+}

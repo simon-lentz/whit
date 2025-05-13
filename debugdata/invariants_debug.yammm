@@ -1,0 +1,6 @@
+schema "invariants"
+
+type Person {
+    ! "example"
+        $0 -> All |$a| { $a == Integer[0,1] }
+}

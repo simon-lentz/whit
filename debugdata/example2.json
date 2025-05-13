@@ -1,0 +1,164 @@
+{
+    "name": "test",
+    "types": [
+        {
+            "name": "Demo",
+            "plural_name": "Demos",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "primary": true
+                }
+            ],
+            "compositions": [
+                {
+                    "to": "Part",
+                    "optional": true,
+                    "many": true,
+                    "documentation": "This thing has zero or more parts.",
+                    "name": "PARTS"
+                },
+                {
+                    "to": "Engine",
+                    "optional": true,
+                    "many": false,
+                    "name": "ENGINE"
+                },
+                {
+                    "to": "Transmission",
+                    "optional": false,
+                    "many": false,
+                    "name": "HAS_TRANSMISSION_SYSTEM"
+                }
+            ],
+            "associations": [
+                {
+                    "to": "OtherOne",
+                    "optional": true,
+                    "many": false,
+                    "documentation": "If there is another one it is linked with this link (showing (one))",
+                    "name": "OTHER_ONE",
+                    "properties": [
+                        {
+                            "name": "someProperty",
+                            "type": "int",
+                            "optional": true,
+                            "documentation": "Some documentation"
+                        }
+                    ]
+                },
+                {
+                    "to": "OtherMany",
+                    "optional": true,
+                    "many": true,
+                    "documentation": "If there is another one it is linked with this link (showing (many))",
+                    "name": "OTHER_MANY",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(80)",
+                            "optional": true,
+                            "documentation": "Some documentation"
+                        }
+                    ]
+                },
+                {
+                    "to": "OtherOneOne",
+                    "optional": false,
+                    "many": false,
+                    "documentation": "If there is another one it is linked with this link (showing (one:one)",
+                    "name": "OTHER_ONE_ONE",
+                    "properties": [
+                        {
+                            "name": "anInt",
+                            "type": "int",
+                            "optional": true,
+                            "documentation": "Some documentation"
+                        }
+                    ]
+                },
+                {
+                    "to": "OtherOneMany",
+                    "optional": false,
+                    "many": true,
+                    "documentation": "If there is another one it is linked with this link (showing (one:many))",
+                    "name": "OTHER_ONE_MANY",
+                    "properties": [
+                        {
+                            "name": "anInt",
+                            "type": "int",
+                            "optional": true,
+                            "documentation": "Some documentation"
+                        }
+                    ]
+                }
+            ],
+            "documentation": "Docs for Simon Demo. Blah blah blah Lore ipsum blah."
+        },
+        {
+            "name": "OtherOne",
+            "plural_name": "OtherOnes"
+        },
+        {
+            "name": "OtherMany",
+            "plural_name": "OtherManies"
+        },
+        {
+            "name": "OtherOneOne",
+            "plural_name": "OtherOneOnes"
+        },
+        {
+            "name": "OtherOneMany",
+            "plural_name": "OtherOneManies"
+        },
+        {
+            "name": "Part",
+            "plural_name": "Parts",
+            "properties": [
+                {
+                    "name": "serialNumber",
+                    "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(32)",
+                    "primary": true
+                },
+                {
+                    "name": "name",
+                    "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(40)",
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "name": "Engine",
+            "plural_name": "Engines",
+            "properties": [
+                {
+                    "name": "serialNumber",
+                    "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(32)",
+                    "primary": true
+                },
+                {
+                    "name": "effectHP",
+                    "type": "int",
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "name": "Transmission",
+            "plural_name": "Transmissions",
+            "properties": [
+                {
+                    "name": "serialNumber",
+                    "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(32)",
+                    "primary": true
+                },
+                {
+                    "name": "kind",
+                    "type": "(\"manual\" | \"auto\")",
+                    "optional": true
+                }
+            ]
+        }
+    ]
+}

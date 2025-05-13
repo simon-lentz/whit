@@ -1,0 +1,49 @@
+schema "cars"
+
+type Car extends RegisteredVehicle {
+}
+type Person extends Entity, Retired {
+    birthday Date
+}
+type Retirement {
+    rid String primary
+}
+type Retired {
+    --> HAS_RETIRED (one) Retirement {
+        fromDate Date required
+    }
+}
+type MC extends RegisteredVehicle {
+
+}
+abstract type Registered {
+    regNbr String primary
+    registrationDate Date required
+    deregistrationDate Date
+    --> REGISTERED_WITH (one) Registrar
+}
+type Registrar {
+    name Enum["DMV", "ABC"] primary
+}
+abstract type Vehicle {
+    color String
+    model String
+}
+
+abstract type RegisteredVehicle extends Vehicle, Registered {
+}
+
+type Bicycle extends Vehicle {
+    bikeID String primary
+}
+type MotorVehicleOwner {
+    --> OWNS_VEHICLE (many) Vehicle {
+        fromDate Date required
+        toDate Date
+    }
+}
+abstract type Entity  extends MotorVehicleOwner {
+        name String primary
+}
+type Company extends Entity {
+}

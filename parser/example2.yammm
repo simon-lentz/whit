@@ -1,0 +1,51 @@
+schema "test"
+/* Docs for Simon Demo. Blah blah blah Lore ipsum blah. */
+type Demo {
+    id Integer primary
+
+    /* If there is another one it is linked with this link (showing (one))*/
+    --> OTHER_ONE (one) OtherOne {
+        /* Some documentation */
+        someProperty Integer
+    }
+
+    /* If there is another one it is linked with this link (showing (many)) */
+    --> OTHER_MANY (many) OtherMany {
+        /* Some documentation */
+        name String[1,80]
+    }
+
+    /* If there is another one it is linked with this link (showing (one:one) */
+    --> OTHER_ONE_ONE (one:one) OtherOneOne {
+        /* Some documentation */
+        anInt Integer
+    }
+
+    /* If there is another one it is linked with this link (showing (one:many)) */
+    --> OTHER_ONE_MANY (one:many) OtherOneMany {
+        /* Some documentation */
+        anInt Integer
+    }
+
+    /* This thing has zero or more parts. */
+    *-> (many) Part
+
+    *-> (one) Engine
+    *-> HAS_TRANSMISSION_SYSTEM (one:one)  Transmission
+}
+type OtherOne {}
+type OtherMany {}
+type OtherOneOne {}
+type OtherOneMany {}
+type Part {
+    serialNumber String[1,32] primary
+    name String[1,40]
+}
+type Engine {
+    serialNumber String[1,32] primary
+    effectHP Integer
+}
+type Transmission {
+    serialNumber String[1,32] primary
+    kind Enum["manual", "auto" ]
+}

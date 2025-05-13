@@ -1,0 +1,56 @@
+{
+  "generator": "wv8",
+  "genmodels": {
+    "AutoPart": {},
+    "AutoPart.kind": {},
+    "Car": {},
+    "Car.HAS_AutoParts": {},
+    "Car.MADE_BY_CarMakers": {},
+    "Car.regNbr": {},
+    "CarMaker": {},
+    "CarMaker.name": {},
+    "EDGE_Car_MADE_BY_CarMaker": {},
+    "EDGE_Car_MADE_BY_CarMaker.x": {}
+  },
+  "definitions": {
+    "default_class": {
+      "InvertedIndexConfig": {
+        "bm25": {
+          "b": 1,
+          "k1": 1
+        },
+        "cleanupIntervalSeconds": 1,
+        "indexNullState": true,
+        "indexPropertyLength": true,
+        "indexTimestamps": true,
+        "stopwords": {
+          "additions": [
+            "newstopword"
+          ],
+          "preset": "preexisting-list-of-words",
+          "removals": [
+            "words-to-remove"
+          ]
+        }
+      },
+      "ModuleConfig": null,
+      "MultiTenancyConfig": {
+        "enabled": true
+      },
+      "ReplicationConfig": {
+        "factor": 3
+      },
+      "ShardingConfig": null,
+      "VectorIndexConfig": null,
+      "VectorIndexType": "some-vector-index-type",
+      "Vectorizer": "some-vectorizer"
+    },
+    "default_property": {
+      "IndexFiltrable": true,
+      "IndexInverted": true,
+      "IndexSearchable": true,
+      "Tokenization": "word",
+      "ModuleConfig": null
+    }
+  }
+}

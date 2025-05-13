@@ -1,0 +1,50 @@
+document:
+  Entities:
+    - name: Energy New England
+      memberControlled: true
+      ElectricServiceProvider:
+        ElectricServices:
+          - ElectricPowerDelivery:
+              ElectricPowerWholesaling: {}
+        ElectricServiceProfile:
+            primaryObjective: "community benefits"
+            geoScale: "regional"
+      EndUser:
+        id: $$1
+    - name: FirstLight Power
+      privateInvestorControlled: true
+      ElectricServiceProvider:
+        ElectricServices:
+          - SERVICE_PROVIDED_TO:
+              EndUser_WHERE: { id: $$1 }
+            ElectricPowerProduction:
+              ElectricPowers:
+                - HydroPower: {}
+
+document2:
+  Entities:
+    - id: $$1
+      description: group of 13 local municipal utilities
+      unincorporatedCollective: true
+#        - LOCATED_IN:
+#            Region: {state: MA}
+    - name: Energy New England
+      memberControlled: true
+      ElectricServiceProvider:
+        ElectricServices:
+          - ElectricPowerDelivery:
+              ElectricPowerWholesaling:
+                SERVICES_PROVIDED_TO:
+                  Entity_WHERE {id: $$1}
+        ElectricServiceProfile:
+            primaryObjective: "community benefits"
+            geoScale: "regional"
+    - name: FirstLight Power
+      privateInvestorControlled: true
+      ElectricServiceProvider:
+        ElectricServices:
+          - SERVICE_PROVIDED_TO:
+              ElectricServiceProviders:_WHERE: { name: Energy New England }
+            ElectricPowerProduction:
+              ElectricPowers:
+                - HydroPower: {}

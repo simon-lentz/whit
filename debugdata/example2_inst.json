@@ -1,0 +1,9 @@
+{
+    "Demos": [
+        {   "id": 42,
+            "PARTS_Parts": [ {"serialNumber": "111-2222-333", "name": "steering wheel"}, {"name": "entertainment system"} ],
+            "ENGINE_Engine": { "serialNumber": "222-3333-4444", "effectHP": 180 },
+            "HAS_TRANSMISSION_SYSTEM": { "serialNumber": "333-4444-5555", "kind": "manual" }
+        }
+    ]
+}

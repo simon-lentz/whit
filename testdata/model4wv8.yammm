@@ -1,0 +1,28 @@
+/* This schema is for testing yammm features with Weaviate. */
+schema "testing"
+
+/* Car is an automobile */
+type Car {
+    /* The registration number of the car. */
+    regNbr String primary
+
+    /* The types of parts in this car. */
+    *->  HAS (many) AutoPart
+
+    /* The manufacturer of the car. */
+    --> MADE_BY (many) CarMaker { 
+        /* x is an example of an association property */
+        x Integer
+    }
+}
+
+/* CarMaker is a manufacturer of cars. */
+type CarMaker {
+	name String primary
+}
+
+/* AutoPart is a kind of part in an automobile. */
+part type AutoPart {
+    /* The type of part that can be found in a Car. */
+    kind String
+}

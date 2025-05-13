@@ -1,0 +1,55 @@
+Project {
+  name: “Mililani Solar 1”
+  projectStage: “operational”
+  projectCapacity: “new”
+  ENABLES_SERVICE {
+    ElectricServices_WHERE {
+      id: $$1
+    }
+  }
+  MANAGED_BY {
+      ElectricServiceProviders_WHERE {
+          name: “Clearway Energy”
+      }
+  }
+}
+Entity {
+  name: “Clearway Energy”
+  legalName: “Clearway Energy Group”
+  privateInvestorControlled: true
+}
+Entity {
+  name: “Hawaiian Electric”
+  publicInvestorControlled: true
+  ElectricServiceProvider {
+      ElectricServiceProviderProfile {
+        serviceProviderName: “Hawaiian Electric”
+        residentialCustomerBase: true
+        geoScale: regional
+      }
+      ElectricServices {
+        id: $$1
+        ElectricPowerProduction [
+          { 
+            id: $$2
+            SolarPower: {}
+          }
+          { id: $$3
+            farmType: “farm”
+            peakCapcityMW: 39
+          }
+        ]
+        ElectricPowerStorage
+          { id: $$5
+            SolarPower: {}
+            storageCapacityMWh: 156
+          }
+        ElectricServiceProfile
+          { id: $$6
+            sustainabilityFocused: true
+            primaryObjective: “financial returns”
+            gridStabilizationEffect: true
+          }
+      }
+  }
+}

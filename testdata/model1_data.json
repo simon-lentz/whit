@@ -1,0 +1,54 @@
+{
+    "People": [
+        { 
+            "name": "Henrik Lindberg",
+            "a": 1,
+            "b": 3,
+            "c": 2,
+            "OWNS_Cars": [
+                {"since": "2013-08-29", "Where": { "regNbr": "ABC123"}},
+                {"since": "2013-08-29", "Where": { "regNbr": "XYZ987"}}
+            ]
+        },
+        { 
+            "name": "Fred Flintstone",
+            "OWNS_Cars": [
+                {"since": "1960-09-30", "Where": { "regNbr": "XYZ-643"}}
+            ]
+        }
+    ],
+    "Cars": [
+        { 	"regNbr": "ABC123",
+            "MADE_BY_CarMakers": [
+                { "Where": { "name": "Fiat" } },
+                { "Where": { "name": "Skoda" } }
+            ],
+            "HAS_AutoParts": [
+                {"id": "$$1", "kind": "Engine"},
+                {"id": "$$2","kind": "Gearbox"}
+            ]
+        },
+        { 	"regNbr": "XYZ987",
+            "MADE_BY_CarMakers": [
+                { "Where": { "name": "RR" } }
+            ],
+            "HAS_AutoParts": [
+                {"id": "$$3", "kind": "Champagne holder"},
+                {"id": "$$4","kind": "Ice machine"}
+            ]
+        },
+        { 	"regNbr": "XYZ-643",
+            "MADE_BY_CarMakers": [ { "Where": { "name": "Canopysaurus" } } ],
+            "HAS_AutoParts": [
+                {"id": "$$5", "kind": "Bird-horn"},
+                {"id": "$$6","kind": "Stone wheels"}
+            ]
+        }
+    ],
+    "CarMakers": [
+        { "name": "Fiat" },
+        { "name": "RR" },
+        { "name": "Skoda" },
+        { "name": "Canopysaurus" }
+    ]
+}

@@ -1,0 +1,445 @@
+{
+  "classes": [
+    {
+      "class": "EDGE_Person_OWNS_Car",
+      "properties": [
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "since"
+        }
+      ]
+    },
+    {
+      "class": "Person",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "name is the name of a person. This is a very long lore ipsum text for the purpose of\n    seeing what the output of multiple lines of description will look like. Does blank lines\n    survive?\n\n    After blank line.\n    And the all lived happiley everafter.\n    THE END \n",
+          "name": "name"
+        },
+        {
+          "dataType": [
+            "EDGE_Person_OWNS_Car"
+          ],
+          "name": "OWNS"
+        }
+      ]
+    },
+    {
+      "class": "Car",
+      "description": "Car is a car...",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "description": "regNbr is the registration number of the car. It is a string between 6 and 8 characters long.",
+          "name": "regnbr"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "comment"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "example"
+        },
+        {
+          "dataType": [
+            "AutoPart"
+          ],
+          "name": "AUTOPARTS"
+        }
+      ]
+    },
+    {
+      "class": "Engine",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "power"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "serialNumber"
+        }
+      ]
+    },
+    {
+      "class": "Transmission",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "type"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "serialNumber"
+        }
+      ]
+    },
+    {
+      "class": "BaseExample",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propS"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propSOneTen"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propSOneMax"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propI"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIFive10"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIZeroMax"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIMinZero"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propF"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propFZeroMax"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propFMinZero"
+        },
+        {
+          "dataType": [
+            "boolean"
+          ],
+          "name": "propB"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propD"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propT"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propTCustom"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "type"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "datatype"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "mixin"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "schema"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "required"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "primary"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "extends"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "includes"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "abstract"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "mixin"
+        }
+      ]
+    },
+    {
+      "class": "RequiredExample",
+      "properties": [
+        {
+          "dataType": [
+            "boolean"
+          ],
+          "name": "mustBeSet"
+        }
+      ]
+    },
+    {
+      "class": "Example",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "id"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propS"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propSOneTen"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "propSOneMax"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propI"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIFive10"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIZeroMax"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "propIMinZero"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propF"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propFZeroMax"
+        },
+        {
+          "dataType": [
+            "number"
+          ],
+          "name": "propFMinZero"
+        },
+        {
+          "dataType": [
+            "boolean"
+          ],
+          "name": "propB"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propD"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propT"
+        },
+        {
+          "dataType": [
+            "date"
+          ],
+          "name": "propTCustom"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "type"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "datatype"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "mixin"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "schema"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "required"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "primary"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "extends"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "includes"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "abstract"
+        },
+        {
+          "dataType": [
+            "int"
+          ],
+          "name": "mixin"
+        },
+        {
+          "dataType": [
+            "boolean"
+          ],
+          "name": "mustBeSet"
+        },
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "comment"
+        }
+      ]
+    },
+    {
+      "class": "Powerplant",
+      "properties": [
+        {
+          "dataType": [
+            "text"
+          ],
+          "name": "capacity"
+        }
+      ]
+    },
+    {
+      "class": "Something",
+      "properties": []
+    },
+    {
+      "class": "TotallyDifferent",
+      "properties": []
+    }
+  ],
+  "name": "example"
+}

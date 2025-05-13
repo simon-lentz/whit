@@ -1,0 +1,374 @@
+{"graph": {
+  "style": {
+    "font-family": "sans-serif",
+    "background-color": "#ffffff",
+    "background-image": "",
+    "background-size": "100%",
+    "node-color": "#ffffff",
+    "border-width": 4,
+    "border-color": "#000000",
+    "radius": 50,
+    "node-padding": 5,
+    "node-margin": 2,
+    "outside-position": "auto",
+    "node-icon-image": "",
+    "node-background-image": "",
+    "icon-position": "inside",
+    "icon-size": 64,
+    "caption-position": "inside",
+    "caption-max-width": 200,
+    "caption-color": "#000000",
+    "caption-font-size": 50,
+    "caption-font-weight": "normal",
+    "label-position": "inside",
+    "label-display": "pill",
+    "label-color": "#000000",
+    "label-background-color": "#ffffff",
+    "label-border-color": "#000000",
+    "label-border-width": 4,
+    "label-font-size": 40,
+    "label-padding": 5,
+    "label-margin": 4,
+    "directionality": "directed",
+    "detail-position": "inline",
+    "detail-orientation": "parallel",
+    "arrow-width": 5,
+    "arrow-color": "#000000",
+    "margin-start": 5,
+    "margin-end": 5,
+    "margin-peer": 20,
+    "attachment-start": "normal",
+    "attachment-end": "normal",
+    "relationship-icon-image": "",
+    "type-color": "#000000",
+    "type-background-color": "#ffffff",
+    "type-border-color": "#000000",
+    "type-border-width": 0,
+    "type-font-size": 16,
+    "type-padding": 5,
+    "property-position": "outside",
+    "property-alignment": "colon",
+    "property-color": "#000000",
+    "property-font-size": 16,
+    "property-font-weight": "normal"
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": 555.692187641266,
+        "y": 202.8170076329838
+      },
+      "caption": "Car",
+      "style": {
+        "property-position": "outside",
+        "property-font-size": 16,
+        "label-position": "inside"
+      },
+      "labels": [],
+      "properties": {}
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": -183,
+        "y": 437.0303675957302
+      },
+      "caption": "Person",
+      "style": {
+        "radius": 50,
+        "label-position": "outside",
+        "label-font-size": 16
+      },
+      "labels": [
+        "Retired"
+      ],
+      "properties": {
+        "birthday":  "#timeStamp",
+        "name+": "string"
+      }
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": 707.5522032344968,
+        "y": 437.0303675957302
+      },
+      "caption": "Retirement",
+      "style": {},
+      "labels": [],
+      "properties": {"id+": "string"}
+    },
+    {
+      "id": "n4",
+      "position": {
+        "x": 307.5522032344968,
+        "y": 437.0303675957302
+      },
+      "caption": "Retired",
+      "style": {
+        "border-color": "#a4dd00"
+      },
+      "labels": [],
+      "properties": {}
+    },
+    {
+      "id": "n5",
+      "position": {
+        "x": 739.7986520264841,
+        "y": 196.44593769295898
+      },
+      "caption": "MC",
+      "labels": [],
+      "properties": {},
+      "style": {
+        "property-position": "outside",
+        "property-font-size": 16,
+        "label-position": "inside"
+      }
+    },
+    {
+      "id": "n6",
+      "position": {
+        "x": 183.01806077365447,
+        "y": -82.72140820358534
+      },
+      "caption": "Registered",
+      "style": {
+        "node-icon-image": "",
+        "caption-font-weight": "normal",
+        "node-color": "#cccccc",
+        "label-position": "outside",
+        "label-font-size": 16
+      },
+      "labels": [
+        "#Abstract"
+      ],
+      "properties": {
+        "regNbr+": "string",
+        "registrationDate":  "#timeStamp",
+        "deregisterationDate?":  "#timeStamp"
+      }
+    },
+    {
+      "id": "n7",
+      "position": {
+        "x": -183,
+        "y": -82.72140820358534
+      },
+      "caption": "Registrar",
+      "style": {},
+      "labels": [],
+      "properties": {
+        "name+": "\"DMV\"|\"ABC\""
+      }
+    },
+    {
+      "id": "n8",
+      "position": {
+        "x": 927.7750217564325,
+        "y": -315.3565714796645
+      },
+      "caption": "Vehicle",
+      "style": {
+        "node-color": "#cccccc",
+        "label-position": "outside",
+        "label-font-size": 16
+      },
+      "labels": [
+        "#Abstract"
+      ],
+      "properties": {
+        "color?": "string",
+        "model?": "string"
+      }
+    },
+    {
+      "id": "n9",
+      "position": {
+        "x": 638.2167350696208,
+        "y": -75.72140820358533
+      },
+      "caption": "Registered Vehicle",
+      "style": {
+        "node-color": "#cccccc",
+        "label-position": "outside",
+        "label-font-size": 16
+      },
+      "labels": [
+        "#Abstract"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "n10",
+      "position": {
+        "x": 927.7750217564325,
+        "y": 196.44593769295898
+      },
+      "caption": "Bicycle",
+      "style": {},
+      "labels": [],
+      "properties": {
+        "bikeID+": "string"
+      }
+    },
+    {
+      "id": "n11",
+      "position": {
+        "x": 285.8274368987446,
+        "y": 174.53532989522824
+      },
+      "caption": "MotorVehicleOwner",
+      "style": {
+        "radius": 100,
+        "border-color": "#a4dd00"
+      },
+      "labels": [
+        "#Mixin"
+      ],
+      "properties": {
+      }
+    },
+    {
+      "id": "n12",
+      "position": {
+        "x": -92.36569598250755,
+        "y": 174.53532989522824
+      },
+      "caption": "Entity ",
+      "style": {
+        "label-position": "outside",
+        "label-font-size": 16,
+        "node-color": "#cccccc"
+      },
+      "labels": [
+        "MotorVehicleOwner",
+        "#Abstract"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "n13",
+      "position": {
+        "x": -1.7313919650150922,
+        "y": 437.0303675957302
+      },
+      "caption": "Company ",
+      "style": {},
+      "labels": [],
+      "properties": {}
+    },
+    {
+      "id": "n1000",
+      "position": {
+        "x": -1.7313919650150922,
+        "y": 437.0303675957302
+      },
+      "caption": "timeStamp",
+      "style": {},
+      "labels": ["#DataType", "string"],
+      "properties": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "n2",
+      "type": "HAS_RETIRED",
+      "style": {},
+      "properties": {
+        "fromDate":  "#timeStamp"
+      },
+      "fromId": "n4",
+      "toId": "n3"
+    },
+    {
+      "id": "n5",
+      "type": "REGISTERED_WITH",
+      "style": {},
+      "properties": {},
+      "fromId": "n6",
+      "toId": "n7"
+    },
+    {
+      "id": "n6",
+      "type": "#INHERITS",
+      "style": {},
+      "properties": {},
+      "fromId": "n9",
+      "toId": "n8"
+    },
+    {
+      "id": "n7",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n5",
+      "toId": "n9"
+    },
+    {
+      "id": "n8",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n0",
+      "toId": "n9"
+    },
+    {
+      "id": "n9",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n9",
+      "toId": "n6"
+    },
+    {
+      "id": "n10",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n10",
+      "toId": "n8"
+    },
+    {
+      "id": "n11",
+      "type": "OWNS_VEHICLE",
+      "style": {},
+      "properties": {
+        "fromDate":  "#timeStamp",
+        "toDate?":  "#timeStamp"
+      },
+      "fromId": "n11",
+      "toId": "n9"
+    },
+    {
+      "id": "n12",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n1",
+      "toId": "n12"
+    },
+    {
+      "id": "n13",
+      "type": "#INHERITS",
+      "style": {
+        "arrow-color": "#b3b3b3"
+      },
+      "properties": {},
+      "fromId": "n13",
+      "toId": "n12"
+    }
+  ]
+}
+}

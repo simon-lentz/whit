@@ -1,0 +1,17 @@
+{ "People": [
+  { "name": "Henrik",
+    "birthday": "1959-03-08"
+  },
+  { "name": "Anna-Greta",
+    "birthday": "1929-12-03"
+  }
+  ],
+  "Cars": [
+  {"regNbr": "ABC123",
+    "registrationDate": "2001-01-01"
+  },
+  { "regNbr": "XYZ987",
+    "registrationDate": "2022-01-01"
+  }
+  ]
+}

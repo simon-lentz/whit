@@ -1,0 +1,26 @@
+{
+    "Cars": [
+        { 	"regNbr": "ABC123",
+            "MADE_BY_CarMakers": [
+                { "x": 1, "Where": { "name": "Fiat" } },
+                { "x": 2, "Where": { "name": "Skoda" } }
+            ],
+            "HAS_AutoParts": [
+                {"id": "$$1", "kind": "Engine"},
+                {"id": "$$2","kind": "Gearbox"}
+            ]
+        },
+        { 	"regNbr": "XYZ987",
+            "MADE_BY_CarMakers": [ { "x": 3, "Where": { "name": "RR" } } ],
+            "HAS_AutoParts": [
+                {"id": "$$3", "kind": "Champagne holder"},
+                {"id": "$$4","kind": "Ice machine"}
+            ]
+        }
+    ],
+    "CarMakers": [
+        { "name": "Fiat" },
+        { "name": "RR" },
+        { "name": "Skoda" }
+    ]
+}

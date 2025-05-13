@@ -1,0 +1,13 @@
+// Comment
+People [
+    { name: "henrik" name: "repeated" birthDate: "1959-03-08" 
+    birthDate: "again"}
+    { name: "fred" birthDate: "1995-01-02" }
+    {birthDate:"no-name"}
+]
+
+Car {
+    regNbr: "Abc123", 
+    hasBreaks: true,
+    odometer: 42
+}

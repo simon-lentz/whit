@@ -1,0 +1,4 @@
+schema "vectest"
+type Doc {
+    space Spacevector[1536]
+}

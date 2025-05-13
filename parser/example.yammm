@@ -1,0 +1,70 @@
+schema "example"
+abstract type Vehicle {
+    example Integer
+}
+type Person {
+    name String primary
+    --> OWNS (one : many) Car / OWNED_BY (one) { since Date}
+}
+/* Car is a car... */
+type Car extends Vehicle, Something, TotallyDifferent, CommonStuff {
+    /* regNbr is the registration number of the car. It is a string between 6 and 8 characters long. */
+    regnbr String[6,8] primary
+    *-> (one : many) AutoPart
+}
+abstract type AutoPart {
+    serialNumber String primary
+}
+type Engine extends AutoPart {
+    power Pattern["[0-9]+kW"]
+}
+type Transmission extends AutoPart {
+    type Enum["manual", "auto", "cvt", "semi-auto"] required
+}
+
+abstract type CommonStuff {
+    comment String[_,512]
+}
+type BaseExample {
+    propS String
+    propSOneTen String[1,10]
+    propSOneMax String[1,_]
+    propI Integer
+    propIFive10 Integer[5,10]
+    propIZeroMax Integer[0,_]
+    propIMinZero Integer[_,0]
+    propF Float
+    propFZeroMax Float[0.0,_]
+    propFMinZero Float[_,0.0]
+    propB Boolean
+    propD Date
+    propT Timestamp
+    propTCustom Timestamp["20060102"]
+    // examplle: keywords can be used as property names
+    type Integer
+    datatype Integer
+    mixin Integer
+    schema Integer
+    required Integer
+    primary Integer
+    extends Integer
+    includes Integer
+    abstract Integer
+    mixin Integer
+}
+type RequiredExample {
+    mustBeSet Boolean required
+}
+type Example extends BaseExample, RequiredExample, CommonStuff {
+    id String primary // TBD: UUID
+}
+type Powerplant {
+    capacity MegaWatt
+}
+/*
+    MegaWatt is a string on the form 123MW
+*/
+type MegaWatt = Pattern["[0-9]+MW"]
+
+type Something{}
+type TotallyDifferent {}

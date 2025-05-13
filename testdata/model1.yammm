@@ -1,0 +1,46 @@
+/* This schema is for testing yammm features */
+schema "testing"
+
+/* Person is a human */
+type Person {
+    /* The complete name of the person */
+    name String primary
+    a Integer
+    b Integer
+    c Integer
+
+    /* Person is a car owner and can own none or many cars. */
+    --> OWNS (many) Car { 
+        /* The start date of the ownership. */
+        since Date
+    }
+
+    ! "Sum of a and b must be less than 10"
+        (a + b) < 10
+    ! "Property a must be smaller than b"
+        a < b
+    ! "Property c must be between a and b (inclusive)"
+        a <= c && c <= b
+}
+/* Car is an automobile */
+type Car {
+    /* The registration number of the car. */
+    regNbr String primary
+
+    /* The types of parts in this car. */
+    *->  HAS (many) AutoPart
+
+    /* The manufacturer of the car. */
+    --> MADE_BY (many) CarMaker
+}
+
+/* CarMaker is a manufacturer of cars. */
+type CarMaker {
+	name String primary
+}
+
+/* AutoPart is a kind of part in an automobile. */
+part type AutoPart {
+    /* The type of part that can be found in a Car. */
+    kind String
+}

@@ -1,0 +1,193 @@
+{
+    "name": "PeopleAndVehiclesSchema",
+    "types": [
+        {
+            "name": "Car",
+            "plural_name": "Cars",
+            "inherits": [
+                "RegisteredVehicle"
+            ]
+        },
+        {
+            "name": "Person",
+            "plural_name": "People",
+            "properties": [
+                {
+                    "name": "birthday",
+                    "type": "#timeStamp"
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "primary": true
+                }
+            ],
+            "inherits": [
+                "Entity"
+            ],
+            "mixins": [
+                "Retired"
+            ]
+        },
+        {
+            "name": "Retirement",
+            "plural_name": "Retirements",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "primary": true
+                }
+            ]
+        },
+        {
+            "name": "Retired",
+            "plural_name": "Retireds",
+            "associations": [
+                {
+                    "to": "Retirement",
+                    "optional": true,
+                    "many": false,
+                    "name": "HAS_RETIRED",
+                    "properties": [
+                        {
+                            "name": "fromDate",
+                            "type": "#timeStamp"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "MC",
+            "plural_name": "MCS",
+            "inherits": [
+                "RegisteredVehicle"
+            ]
+        },
+        {
+            "name": "Registered",
+            "plural_name": "Registereds",
+            "properties": [
+                {
+                    "name": "regNbr",
+                    "type": "string",
+                    "primary": true
+                },
+                {
+                    "name": "registrationDate",
+                    "type": "#timeStamp"
+                },
+                {
+                    "name": "deregisterationDate",
+                    "type": "#timeStamp",
+                    "optional": true
+                }
+            ],
+            "associations": [
+                {
+                    "to": "Registrar",
+                    "optional": true,
+                    "many": false,
+                    "name": "REGISTERED_WITH"
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "Registrar",
+            "plural_name": "Registrars",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "\"DMV\"|\"ABC\"",
+                    "primary": true
+                }
+            ]
+        },
+        {
+            "name": "Vehicle",
+            "plural_name": "Vehicles",
+            "properties": [
+                {
+                    "name": "color",
+                    "type": "color",
+                    "optional": true
+                },
+                {
+                    "name": "model",
+                    "type": "string",
+                    "optional": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "RegisteredVehicle",
+            "plural_name": "RegisteredVehicles",
+            "inherits": [
+                "Vehicle",
+                "Registered"
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "Bicycle",
+            "plural_name": "Bicycles",
+            "properties": [
+                {
+                    "name": "bikeID",
+                    "type": "string",
+                    "primary": true
+                }
+            ],
+            "inherits": [
+                "Vehicle"
+            ]
+        },
+        {
+            "name": "MotorVehicleOwner",
+            "plural_name": "MotorVehicleOwners",
+            "associations": [
+                {
+                    "to": "RegisteredVehicle",
+                    "optional": true,
+                    "many": false,
+                    "name": "OWNS_VEHICLE",
+                    "properties": [
+                        {
+                            "name": "fromDate",
+                            "type": "#timeStamp"
+                        },
+                        {
+                            "name": "toDate?",
+                            "type": "#timeStamp"
+                        }
+                    ]
+                }
+            ],
+            "is_mixin": true
+        },
+        {
+            "name": "Entity",
+            "plural_name": "Entities",
+            "mixins": [
+                "MotorVehicleOwner"
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "Company",
+            "plural_name": "Companies",
+            "inherits": [
+                "Entity"
+            ]
+        }
+    ],
+    "data_types": [
+        {
+            "name": "timeStamp",
+            "type": "string"
+        }
+    ]
+}

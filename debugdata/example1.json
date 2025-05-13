@@ -1,0 +1,299 @@
+{
+    "name": "example",
+    "types": [
+        {
+            "name": "Vehicle",
+            "plural_name": "Vehicles",
+            "properties": [
+                {
+                    "name": "example",
+                    "type": "int",
+                    "optional": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "Person",
+            "plural_name": "People",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "primary": true
+                }
+            ],
+            "associations": [
+                {
+                    "to": "Car",
+                    "optional": false,
+                    "many": true,
+                    "name": "OWNS",
+                    "properties": [
+                        {
+                            "name": "since",
+                            "type": "string \u0026 time.Format(time.RFC3339Date)",
+                            "optional": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Car",
+            "plural_name": "Cars",
+            "properties": [
+                {
+                    "name": "regnbr",
+                    "type": "string \u0026 strings.MinRunes(6) \u0026 strings.MaxRunes(8)",
+                    "primary": true
+                }
+            ],
+            "inherits": [
+                "Vehicle",
+                "Something",
+                "TotallyDifferent"
+            ],
+            "mixins": [
+                "CommonStuff"
+            ],
+            "compositions": [
+                {
+                    "to": "AutoPart",
+                    "optional": false,
+                    "many": true
+                }
+            ]
+        },
+        {
+            "name": "AutoPart",
+            "plural_name": "AutoParts",
+            "properties": [
+                {
+                    "name": "serialNumber",
+                    "type": "string",
+                    "primary": true
+                }
+            ],
+            "is_abstract": true
+        },
+        {
+            "name": "Engine",
+            "plural_name": "Engines",
+            "properties": [
+                {
+                    "name": "power",
+                    "type": "(=~ \"[0-9]+kW\")",
+                    "optional": true
+                }
+            ],
+            "inherits": [
+                "AutoPart"
+            ]
+        },
+        {
+            "name": "Transmission",
+            "plural_name": "Transmissions",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "(\"manual\" | \"auto\" | \"cvt\" | \"semi-auto\")"
+                }
+            ],
+            "inherits": [
+                "AutoPart"
+            ]
+        },
+        {
+            "name": "CommonStuff",
+            "plural_name": "CommonStuffs",
+            "properties": [
+                {
+                    "name": "comment",
+                    "type": "string \u0026 strings.MaxRunes(512)",
+                    "optional": true
+                }
+            ],
+            "is_mixin": true
+        },
+        {
+            "name": "BaseExample",
+            "plural_name": "BaseExamples",
+            "properties": [
+                {
+                    "name": "propS",
+                    "type": "string",
+                    "optional": true
+                },
+                {
+                    "name": "propSOneTen",
+                    "type": "string \u0026 strings.MinRunes(1) \u0026 strings.MaxRunes(10)",
+                    "optional": true
+                },
+                {
+                    "name": "propSOneMax",
+                    "type": "string \u0026 strings.MinRunes(1)",
+                    "optional": true
+                },
+                {
+                    "name": "propI",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "propIFive10",
+                    "type": "int \u0026 \u003e= 5 \u0026 \u003c= 10",
+                    "optional": true
+                },
+                {
+                    "name": "propIZeroMax",
+                    "type": "int \u0026 \u003e= 0",
+                    "optional": true
+                },
+                {
+                    "name": "propIMinZero",
+                    "type": "int \u0026 \u003c= 0",
+                    "optional": true
+                },
+                {
+                    "name": "propF",
+                    "type": "float",
+                    "optional": true
+                },
+                {
+                    "name": "propFZeroMax",
+                    "type": "float \u0026 \u003e= 0.0",
+                    "optional": true
+                },
+                {
+                    "name": "propFMinZero",
+                    "type": "float \u0026 \u003c= 0.0",
+                    "optional": true
+                },
+                {
+                    "name": "propB",
+                    "type": "bool",
+                    "optional": true
+                },
+                {
+                    "name": "propD",
+                    "type": "string \u0026 time.Format(time.RFC3339Date)",
+                    "optional": true
+                },
+                {
+                    "name": "propT",
+                    "type": "string \u0026 time.Format(time.RFC3339)",
+                    "optional": true
+                },
+                {
+                    "name": "propTCustom",
+                    "type": "string \u0026 time.Format(\"20060102\")",
+                    "optional": true
+                },
+                {
+                    "name": "type",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "datatype",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "mixin",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "schema",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "required",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "primary",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "extends",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "includes",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "abstract",
+                    "type": "int",
+                    "optional": true
+                },
+                {
+                    "name": "mixin",
+                    "type": "int",
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "name": "RequiredExample",
+            "plural_name": "RequiredExamples",
+            "properties": [
+                {
+                    "name": "mustBeSet",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "Example",
+            "plural_name": "Examples",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "primary": true
+                }
+            ],
+            "inherits": [
+                "BaseExample",
+                "RequiredExample"
+            ],
+            "mixins": [
+                "CommonStuff"
+            ]
+        },
+        {
+            "name": "Powerplant",
+            "plural_name": "Powerplants",
+            "properties": [
+                {
+                    "name": "capacity",
+                    "type": "#megaWatt",
+                    "optional": true
+                }
+            ]
+        },
+        {
+            "name": "Something",
+            "plural_name": "Somethings"
+        },
+        {
+            "name": "TotallyDifferent",
+            "plural_name": "TotallyDifferents"
+        }
+    ],
+    "data_types": [
+        {
+            "name": "megaWatt",
+            "type": "(=~ \"[0-9]+MW\")"
+        }
+    ]
+}

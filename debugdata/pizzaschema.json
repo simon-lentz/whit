@@ -1,0 +1,103 @@
+{
+    "$id": "https://example.com/pizza.schema2.json",
+    "title": "Nodes",
+    "description": "Nodes of different types",
+    "type": "object",
+    "properties": {
+        "pizzas": {
+            "description": "An array of Pizza nodes",
+            "type": "array",
+            "items": {
+                "description": "A Pizza node",
+                "type": "object",
+                "properties": {
+                    "links": { "$ref": "#/$defs/links" },
+                    "$id": { "type": "string"},
+                    "size": {
+                        "enum": ["S", "M", "L"]
+                    },
+                    "type": {
+                        "enum": ["pan", "thin", "cheeze crust"]
+                    }
+                },
+                "additionalProperties": false,
+                "required": ["size", "type"]
+            }
+        },
+        "persons": {
+            "description": "An array of Person nodes",
+            "type": "array",
+            "items": {
+                "description": "A Person node",
+                "type": "object",
+                "properties": {
+                    "links": { "$ref": "#/$defs/links" },
+                    "name": { "type": "string" }
+                },
+                "additionalProperties": false,
+                "required": ["name"]
+            }
+        },
+
+        "toppings": {
+            "description": "An array of Topping nodes",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "links": { "$ref": "#/$defs/links" },
+                    "name": { "type": "string" }
+                },
+                "additionalProperties": false,
+                "required": ["name"]
+            }
+        },
+        "additionalProperties": false
+    },
+    "additionalProperties": false,
+
+    "$defs": {
+        "links": {
+            "description": "Links is an array of relationships to other nodes",
+            "type": "object",
+            "properties": {
+                "pizzaTopping": { 
+                    "description": "An array of pizzaTopping relationships from Pizza to Topping",
+                    "type": "array",
+                    "items": {
+                        "description": "A pizzaTopping relationship",
+                        "type": "object",
+                        "properties":{
+                            "topping": {
+                                "description": "A reference to a Topping by name",
+                                "type": "string"
+                            },
+                            "extra": {
+                                "description": "If extra amount of topping should be on the pizza",
+                                "type": "boolean"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["topping"]
+                    }
+                },
+                "likedPizza": { 
+                    "description": "An array of likedPizza relationships",
+                    "type": "array",
+                    "items": {
+                        "description": "A likedPizza relationship from Person to Pizza",
+                        "type": "object",
+                        "properties":{
+                            "pizza": {
+                                "description": "A reference to a Pizza by $id",
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": ["pizza"]
+                    }
+                }
+            },"additionalProperties":false
+        }
+      }    
+  }
