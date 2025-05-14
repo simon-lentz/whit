@@ -1,38 +1,63 @@
 # .github/workflows/release.yml
-name: goreleaser
+name: Build & Release Whit (Go)
 
 on:
   push:
-    tags: ['v*']          # fire only for semantic-version tags
+    tags: ['v*']          # run only for tags that look like v1.2.3
 
 permissions:
-  contents: write
+  contents: write         # needed to create / update releases
 
 jobs:
-  goreleaser:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    strategy:
+      matrix:
+        goos:   [linux]
+        goarch: [amd64]
 
-      - uses: actions/setup-go@v5      # newer major, built-in cache
+    steps:
+    # ─────────────────────────── Source & Go toolchain ──────────────────────────
+      - name: Checkout Whit source
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.21
+        uses: actions/setup-go@v5
         with:
           go-version: 1.21
           cache: true
 
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase:      ${{ secrets.GPG_PASSPHRASE }}
-
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
-        with:
-          version: v2.0.x              # pin minor you tested
-          args: release --clean
+    # ───────────────────────────── Build & Package ──────────────────────────────
+      - name: Build, archive, and checksum ${{ matrix.goos }}/${{ matrix.goarch }}
         env:
-          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
-          # GITHUB_TOKEN is injected automatically; no need for GH_TOKEN
+          GOOS:        ${{ matrix.goos }}
+          GOARCH:      ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          set -euo pipefail
+
+          # 1. compile
+          go build -ldflags="-s -w" -o whit .
+
+          # 2. rename + archive
+          BIN="whit-${{ github.ref_name }}-${GOOS}-${GOARCH}"
+          ARCHIVE="$BIN.tar.gz"
+          mv whit "$BIN"
+          tar -czf "$ARCHIVE" "$BIN"
+
+          # 3. generate checksum file
+          CHECKSUM_FILE="$BIN.sha256"
+          sha256sum "$ARCHIVE" > "$CHECKSUM_FILE"
+
+          # 4. expose filenames for next step
+          echo "ARCHIVE=$ARCHIVE"   >> "$GITHUB_ENV"
+          echo "CHECKSUM=$CHECKSUM_FILE" >> "$GITHUB_ENV"
+
+    # ──────────────────────────── Upload to Release ─────────────────────────────
+      - name: Upload archive & checksum to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.ARCHIVE }}
+            ${{ env.CHECKSUM }}
+          generate_release_notes: true   # notes generated once per tag
