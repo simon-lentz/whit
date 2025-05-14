@@ -1,63 +1,44 @@
-# .github/workflows/release.yml
 name: Build & Release Whit (Go)
 
 on:
   push:
-    tags: ['v*']          # run only for tags that look like v1.2.3
+    tags: ["v*"]         
 
 permissions:
-  contents: write         # needed to create / update releases
+  contents: write        
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos:   [linux]
-        goarch: [amd64]
+        goos:   [linux]              
+        goarch: [amd64]            
 
     steps:
-    # ─────────────────────────── Source & Go toolchain ──────────────────────────
       - name: Checkout Whit source
         uses: actions/checkout@v4
 
       - name: Set up Go 1.21
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v3
         with:
-          go-version: 1.21
-          cache: true
+          go-version: 1.21           
+        id: go
 
-    # ───────────────────────────── Build & Package ──────────────────────────────
-      - name: Build, archive, and checksum ${{ matrix.goos }}/${{ matrix.goarch }}
+      - name: Build Whit ${{ matrix.goos }}/${{ matrix.goarch }}
         env:
-          GOOS:        ${{ matrix.goos }}
-          GOARCH:      ${{ matrix.goarch }}
-          CGO_ENABLED: 0
+          GOOS:   ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0            
         run: |
-          set -euo pipefail
-
-          # 1. compile
           go build -ldflags="-s -w" -o whit .
-
-          # 2. rename + archive
           BIN="whit-${{ github.ref_name }}-${GOOS}-${GOARCH}"
-          ARCHIVE="$BIN.tar.gz"
           mv whit "$BIN"
-          tar -czf "$ARCHIVE" "$BIN"
+          tar -czf "$BIN.tar.gz" "$BIN"
+          echo "ASSET=$BIN.tar.gz" >> "$GITHUB_ENV"
 
-          # 3. generate checksum file
-          CHECKSUM_FILE="$BIN.sha256"
-          sha256sum "$ARCHIVE" > "$CHECKSUM_FILE"
-
-          # 4. expose filenames for next step
-          echo "ARCHIVE=$ARCHIVE"   >> "$GITHUB_ENV"
-          echo "CHECKSUM=$CHECKSUM_FILE" >> "$GITHUB_ENV"
-
-    # ──────────────────────────── Upload to Release ─────────────────────────────
-      - name: Upload archive & checksum to GitHub Release
+      - name: Upload binary to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            ${{ env.ARCHIVE }}
-            ${{ env.CHECKSUM }}
-          generate_release_notes: true   # notes generated once per tag
+          files: ${{ env.ASSET }}
+          generate_release_notes: true
