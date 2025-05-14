@@ -1,44 +1,40 @@
-name: Build & Release Whit (Go)
+name: Release Whit (GoReleaser)
 
 on:
   push:
-    tags: ["v*"]         
+    tags:
+      - 'v*' # tag-driven releases
 
 permissions:
-  contents: write        
+  contents: write          
+  id-token: write          
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        goos:   [linux]              
-        goarch: [amd64]            
-
     steps:
-      - name: Checkout Whit source
+      - name: Checkout (full history for changelog)
         uses: actions/checkout@v4
-
-      - name: Set up Go 1.21
-        uses: actions/setup-go@v3
         with:
-          go-version: 1.21           
-        id: go
+          fetch-depth: 0
 
-      - name: Build Whit ${{ matrix.goos }}/${{ matrix.goarch }}
+      - name: Set up Go (auto-detect from go.mod)
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          version: '~> v2'
+          args: release --clean
         env:
-          GOOS:   ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
-          CGO_ENABLED: 0            
-        run: |
-          go build -ldflags="-s -w" -o whit .
-          BIN="whit-${{ github.ref_name }}-${GOOS}-${GOARCH}"
-          mv whit "$BIN"
-          tar -czf "$BIN.tar.gz" "$BIN"
-          echo "ASSET=$BIN.tar.gz" >> "$GITHUB_ENV"
-
-      - name: Upload binary to GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ env.ASSET }}
-          generate_release_notes: true
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
