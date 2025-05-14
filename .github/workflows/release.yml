@@ -2,43 +2,67 @@ name: Build & Release Whit (Go)
 
 on:
   push:
-    tags: ["v*"]         
+    tags:
+      - 'v*'          
 
 permissions:
-  contents: write        
+  contents: write    
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos:   [linux]              
-        goarch: [amd64]            
+        goos:   [linux]  
+        goarch: [amd64]
+
+    env:
+      CGO_ENABLED: 0     
 
     steps:
-      - name: Checkout Whit source
-        uses: actions/checkout@v4
+    # checkout and build
+    - name: Checkout Whit source
+      uses: actions/checkout@v4
 
-      - name: Set up Go 1.21
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.21           
-        id: go
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
 
-      - name: Build Whit ${{ matrix.goos }}/${{ matrix.goarch }}
-        env:
-          GOOS:   ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
-          CGO_ENABLED: 0            
-        run: |
+    - name: Build ${{ matrix.goos }}/${{ matrix.goarch }}
+      run: |
+        GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} \
           go build -ldflags="-s -w" -o whit .
-          BIN="whit-${{ github.ref_name }}-${GOOS}-${GOARCH}"
-          mv whit "$BIN"
-          tar -czf "$BIN.tar.gz" "$BIN"
-          echo "ASSET=$BIN.tar.gz" >> "$GITHUB_ENV"
+        BIN="whit-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}"
+        mv whit "$BIN"
+        tar -czf "$BIN.tar.gz" "$BIN"
+        echo "ASSET=$BIN.tar.gz" >> "$GITHUB_ENV"
 
-      - name: Upload binary to GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ env.ASSET }}
-          generate_release_notes: true
+    # create a checksum text file
+    - name: Generate checksum file
+      run: |
+        sha256sum "$ASSET" | tee "checksums.txt"
+        echo "CHECKSUM_FILE=checksums.txt" >> "$GITHUB_ENV"
+
+    # import private key once per runner and sign the checksums
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v6
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        passphrase:      ${{ secrets.GPG_PASSPHRASE }}
+
+    - name: Sign checksum file (detached, ASCII-armored)
+      run: |
+        gpg --batch --yes --armor --output checksums.txt.asc \
+            --detach-sign "$CHECKSUM_FILE"
+        echo "SIG_FILE=checksums.txt.asc" >> "$GITHUB_ENV"
+    
+    # upload everything to the same GitHub Release
+    - name: Upload assets to GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          ${{ env.ASSET }}
+          ${{ env.CHECKSUM_FILE }}
+          ${{ env.SIG_FILE }}
+        generate_release_notes: true
